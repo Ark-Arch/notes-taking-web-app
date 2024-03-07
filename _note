@@ -1,4 +1,11 @@
 
+application -> a simple notes accounts
+- add notes
+- delete notes
+- sign out 
+- etc!
+
+
 with this project, i would learn
 - how to make a website with python
 - how to us Flask framework
