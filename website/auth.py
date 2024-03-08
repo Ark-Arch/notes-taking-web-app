@@ -1,15 +1,18 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, requests
 
 auth = Blueprint('auth', __name__)
 
-@auth.route('/login')
+# the methods list tells what methods is permitted at the endpoint
+@auth.route('/login', methods=['GET', 'POST'])
 def login():
+    data = request.form
+    print(data)
     return render_template("login.html")
 
 @auth.route('/logout')
 def logout():
     return "this is the logout foett"
 
-@auth.route('/sign-up')
+@auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
     return render_template("sign_up.html")
