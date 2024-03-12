@@ -7,3 +7,8 @@ views = Blueprint('views', __name__)
 def home():
     #this function would run whenever we make type is '/' on the server
     return render_template("home.html")
+
+@views.route('/about-us')
+def about_us():
+    return render_template("about_us.html")
+

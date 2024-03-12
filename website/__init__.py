@@ -7,9 +7,11 @@ def create_app():
 
     from .views import views
     from .auth import auth
+    from .api import api
 
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
+    app.register_blueprint(api, url_prefix='/api')
 
     # url_prefix is used to prefix what ever is defined as the route link
 
