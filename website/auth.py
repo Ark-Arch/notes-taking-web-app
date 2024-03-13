@@ -5,8 +5,6 @@ auth = Blueprint('auth', __name__)
 # the methods list tells what methods is permitted at the endpoint
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-    data = request.form
-    print(data)
     return render_template("login.html")
 
 @auth.route('/logout')
@@ -15,8 +13,6 @@ def logout():
 
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
-    data = request.form
-    print(data)
     if request.method == 'POST':
         email = request.form.get('email')
         firstName = request.form.get('firstName')
