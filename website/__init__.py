@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from os import path
 
 db = SQLAlchemy() # a database object created
 DB_NAME = "database.db"
@@ -27,7 +28,20 @@ def create_app():
 
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
-
     # url_prefix is used to prefix what ever is defined as the route link
 
+    from .models import User, Note
+    # this is to make sure that we load the models file and define the User and Note classes before initializing our databases.
+
+    create_database(app)
+
     return app
+
+
+# if database exists, do not create/ overwrite. but create if not.
+def create_database(app):
+    if not path.exists('website/' + DB_NAME):
+        db.create_all(app=appi)
+        print('Created Database!')
+
+

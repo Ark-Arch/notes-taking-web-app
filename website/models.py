@@ -35,7 +35,7 @@ class Note(db.Model):
 # DEFINING A SCHEMA FOR MY USER
 # a schema is a blueprint for an object to be stored in adatabase
 class User(db.Model, UserMixin): # inheriting the db.Model and UserMixin class.
-    id = db.Column(db.integer, primary_key=True) # using a primary key ->a unique value
+    id = db.Column(db.Integer, primary_key=True) # using a primary key ->a unique value
     email = db.Column(db.String(150), unique=True) # maximum length of value is 150
     # the unique property also ensures that no user has the same email as another
     # it becomes invalid to have a repeated email as a login information
