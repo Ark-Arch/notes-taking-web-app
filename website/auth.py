@@ -8,6 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 # a hashing function is a one-way function THAT DOES NOT HAVE AN INVERSE.
 # the password is never stored in plain text
 
+from flask_login import login_user, login_required, logout_user, current_user
 
 auth = Blueprint('auth', __name__)
 
@@ -24,6 +25,8 @@ def login():
         if user:
             if check_password_hash(user.password, password):
                 flash('Logged in successfully', category='success')
+                #remebers user is logged in until cookies is cleared
+                login_user(user, remember=True)
 
                 # redirect to home page after successful login
                 return redirect(url_for('views.home'))
@@ -35,8 +38,10 @@ def login():
     return render_template("login.html")
 
 @auth.route('/logout')
+@login_required    # JUST TO ENSURE THAT THE LOGOUT FUNCTION DOES NOT WORK IF THERE IS NO LOGIN
 def logout():
-    return "this is the logout foett"
+    logout_user()
+    return redirect(url_for('auth.login'))
 
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
@@ -70,6 +75,9 @@ def sign_up():
 
             # make a commit to the database -> update the database
             db.session.commit()
+
+            # remeber the user is logged in 
+            login_user(user, remember=True)
 
             # flash a success message
             flash('Account created!', category='success')
