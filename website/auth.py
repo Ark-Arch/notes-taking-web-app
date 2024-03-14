@@ -1,4 +1,13 @@
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, flash, redirect, url_for
+from .models import User
+
+from . import db
+
+from werkzeug.security import generate_password_hash, check_password_hash
+# the above imports an hashing mechanism that helps hashing the password.
+# a hashing function is a one-way function THAT DOES NOT HAVE AN INVERSE.
+# the password is never stored in plain text
+
 
 auth = Blueprint('auth', __name__)
 
@@ -13,6 +22,8 @@ def logout():
 
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
+    data = request.form
+    print(data)
     if request.method == 'POST':
         email = request.form.get('email')
         firstName = request.form.get('firstName')
@@ -28,6 +39,19 @@ def sign_up():
         elif password1 != password2:
             flash('Your passwords do not match', category='error')
         else:
-            # add user to database
+            # define the user
+            new_user = User(email=email, first_name=firstName, password=generate_password_hash(password1, method='pbkdf2:sha256'))
+
+            # add the user account to the database
+            db.session.add(new_user)
+
+            # make a commit to the database -> update the database
+            db.session.commit()
+
+            # flash a success message
             flash('Account created!', category='success')
+
+            # redirect the user to the homepage of the website
+            return redirect(url_for('views.home'))
+
     return render_template("sign_up.html")
