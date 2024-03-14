@@ -78,7 +78,7 @@ def sign_up():
             db.session.commit()
 
             # remeber the user is logged in 
-            login_user(user, remember=True)
+            login_user(new_user, remember=True)
 
             # flash a success message
             flash('Account created!', category='success')
