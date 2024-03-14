@@ -1,7 +1,9 @@
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
 from .models import Note
 from . import db
+import json
+
 
 views = Blueprint('views', __name__)
 # setting up blue print means that the file has a bunch of routes on its inside
@@ -27,3 +29,17 @@ def home():
 def about_us():
     return render_template("about_app.html")
 
+# this would only take on the POST method. no GET request
+@views.route('/delete-note', methods=['POST'])
+def delete_note():
+    print(request.data)
+    note = json.loads(request.data)
+    print(f"note = {note}")
+    noteId = note['noteId']
+    note = Note.query.get(noteId) # access primary key
+    if note:
+        if note.user_id == current_user.id: # if the user signed in owns the note,
+            db.session.delete(note)
+            db.session.commit()
+    
+    return jsonify({}) # returns an empty response, because we NEED TO return something from these views or routes
