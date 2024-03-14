@@ -9,7 +9,7 @@ views = Blueprint('views', __name__)
 @login_required # now i can not get to the home page unless i login
 def home():
     #this function would run whenever we make type is '/' on the server
-    return render_template("home.html")
+    return render_template("home.html", user=current_user)
 
 @views.route('/about-app')
 def about_us():

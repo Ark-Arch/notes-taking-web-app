@@ -21,6 +21,7 @@ def login():
 
         # query and confirm entry in database
         user = User.query.filter_by(email=email).first()
+        print(dir(user))
 
         if user:
             if check_password_hash(user.password, password):
@@ -35,7 +36,7 @@ def login():
         else:
             flash('Email does not exist.', category='error')
 
-    return render_template("login.html")
+    return render_template("login.html", user=current_user)
 
 @auth.route('/logout')
 @login_required    # JUST TO ENSURE THAT THE LOGOUT FUNCTION DOES NOT WORK IF THERE IS NO LOGIN
@@ -85,4 +86,5 @@ def sign_up():
             # redirect the user to the homepage of the website
             return redirect(url_for('views.home'))
 
-    return render_template("sign_up.html")
+    return render_template("sign_up.html", user=current_user)
+# the return statement above simply ensures the current_user object can be used in the sign up template. it is useful to display information about the current user on the sign-up page of customizing the page based on the user's authentication status or role
