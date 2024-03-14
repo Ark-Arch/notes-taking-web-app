@@ -33,15 +33,7 @@ def create_app():
     from .models import User, Note
     # this is to make sure that we load the models file and define the User and Note classes before initializing our databases.
 
-    create_database(app)
+    with app.app_context():
+        db.create_all()
 
     return app
-
-
-# if database exists, do not create/ overwrite. but create if not.
-def create_database(app):
-    if not path.exists('website/' + DB_NAME):
-        db.create_all(app=appi)
-        print('Created Database!')
-
-
