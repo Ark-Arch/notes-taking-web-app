@@ -28,6 +28,10 @@ def home():
 @views.route('/previous-notes')
 @login_required
 def previous_notes():
+    data = dir(request)
+    print(data)
+    d = request.content_length
+    print(d)
     return render_template("previous_notes.html", user=current_user)
 
 @views.route('/about-app')

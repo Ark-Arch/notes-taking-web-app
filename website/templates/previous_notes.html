@@ -11,6 +11,7 @@
 		<a class="btn btn-primary" href="/"> Add note </a>
 </div>
 
+{% if user.notes %}
 
 <ul class="list-group list-group-flush" id="notes">
 	{% for note in user.notes %}
@@ -25,5 +26,11 @@
 	{% endfor %}
 </ul>
 
+{% else %}
+<br/>
+<div align="center">
+	<p>YOU DO NOT HAVE ANY SAVED NOTES </p>
+</div>
+{% endif %}
 
 {% endblock %}
