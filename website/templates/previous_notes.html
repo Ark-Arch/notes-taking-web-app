@@ -4,12 +4,19 @@
 
 {% block previous_note_link %}{% endblock %}
 
-{% block content %}
-<h1 align="center">Notes</h1>
 
-<div align="right">
+{% block sticky_div %}
+<h1 align="center">Notes</h1>
+<br/>
+<div align="center">
 		<a class="btn btn-primary" href="/"> Add note </a>
 </div>
+<br/>
+
+{% endblock %}
+
+
+{% block content %}
 
 {% if user.notes %}
 

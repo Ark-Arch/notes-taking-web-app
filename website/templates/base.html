@@ -36,11 +36,18 @@
 				overflow: visible;
 				text-overflow: unset;
 			}
+			.sticky {
+				position: sticky;
+				top: 0;
+				z-index: 1000;
+				background-color: white;
+			}
 		</style>
 
 	</head>
 	<body>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<div class="sticky">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -60,6 +67,8 @@
 			</div>
 		</div>
 		</nav>
+		{% block sticky_div %}{% endblock %}
+	</div>
 		
 		{% with messages = get_flashed_messages(with_categories=true) %}
 			{% if messages %}

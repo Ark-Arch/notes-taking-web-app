@@ -4,8 +4,13 @@
 
 {% block add_note_link %}{% endblock %}
 
-{% block content %}
+{% block sticky_div %}
+<br/>
 <h1 align="center">ADD A NEW NOTE</h1>
+<br/>
+{% endblock %}
+
+{% block content %}
 
 <form method="POST">
 	<textarea name="note" id="note" class="form-control"></textarea>
