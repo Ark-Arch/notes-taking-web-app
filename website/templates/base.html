@@ -17,9 +17,14 @@
 		<title>{% block title %}HOME{% endblock %}</title>
 
 		<style>
-			/* Style for the list item */
-			/*.list-group-item*/
 
+			ul {
+				text-align:justify;
+			}
+			li {
+				display: inline-block;
+			}
+			/* Style for the list item */
 			.content {
 				white-space:nowrap;
 				overflow:hidden;
@@ -36,11 +41,20 @@
 				overflow: visible;
 				text-overflow: unset;
 			}
+
+			/*Style for a sticky div */
 			.sticky {
 				position: sticky;
 				top: 0;
 				z-index: 1000;
 				background-color: white;
+			}
+
+			/*Style for a fixed text area*/
+			.fixed-size-textarea {
+				width: 100%;
+				height: 320px;
+				resize: none;
 			}
 		</style>
 
