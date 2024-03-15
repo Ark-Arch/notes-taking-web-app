@@ -32,9 +32,7 @@ def about_us():
 # this would only take on the POST method. no GET request
 @views.route('/delete-note', methods=['POST'])
 def delete_note():
-    print(request.data)
     note = json.loads(request.data)
-    print(f"note = {note}")
     noteId = note['noteId']
     note = Note.query.get(noteId) # access primary key
     if note:
