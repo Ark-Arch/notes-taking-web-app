@@ -2,27 +2,17 @@
 
 {% block title %}HOME{% endblock %}
 
-{% block content %}
-<h1 align="center">Notes</h1>
+{% block add_note_link %}{% endblock %}
 
-<ul class="list-group list-group-flush" id="notes">
-	{% for note in user.notes %}
-	<li class="list-group-item">
-		<div class="content">
-		{{user.notes.index(note)+1}} --> {{ note.data }}
-		</div>
-	<button type="button" class="close" onClick="deleteNote({{ note.id }})">
-			<span aria-hidden="true">&times;</span>
-	</button>
-	</li>
-	{% endfor %}
-</ul>
+{% block content %}
+<h1 align="center">ADD A NEW NOTE</h1>
 
 <form method="POST">
 	<textarea name="note" id="note" class="form-control"></textarea>
 	<br/>
 	<div align="center">
-		<button type="submit" class="btn btn-primary"> Add note </button>
+		<button type="submit" class="btn btn-primary"> Add Note</button>
+		<a class="btn btn-primary" href="/previous-notes" >previous notes<a>
 	</div>
 </form>
 

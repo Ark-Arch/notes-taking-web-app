@@ -3,7 +3,7 @@ function deleteNote(noteId) {
 		method: 'POST',
 		body: JSON.stringify({ noteId: noteId})
 	}).then((_res) => {
-		window.location.href="/"; //basically refreshes the home page.
+		window.location.href="/previous-notes"; //basically refreshes the home page.
 	});
 }
 

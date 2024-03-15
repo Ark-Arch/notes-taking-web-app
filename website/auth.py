@@ -21,7 +21,6 @@ def login():
 
         # query and confirm entry in database
         user = User.query.filter_by(email=email).first()
-        print(dir(user))
 
         if user:
             if check_password_hash(user.password, password):

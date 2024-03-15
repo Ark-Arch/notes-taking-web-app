@@ -49,7 +49,8 @@
 			<div class="navbar-nav">
 				{% if user.is_authenticated %} 
 				<!-- Note that to use the user object, i had to pass the object into the render_template function-->
-				<a class="nav-item nav-link" id="home" href="/">Home</a>
+				{% block add_note_link %}<a class="nav-item nav-link" id="home" href="/">Add Note</a>{% endblock %}
+				{% block previous_note_link %}<a class="nav-item nav-link" id="previous-notes" href="/previous-notes">Previous Notes</a>{% endblock %}
 				<a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
 				{% else %}
 							
