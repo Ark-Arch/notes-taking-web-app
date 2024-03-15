@@ -24,7 +24,8 @@
 	{% for note in user.notes %}
 	<li class="list-group-item">
 		<div class="content">
-		{{user.notes.index(note)+1}} --> {{ note.data }}
+			<div>note {{user.notes.index(note)+1}} --> ({{note.date}})</div> 
+			<div>{{ note.data }}</div>
 		</div>
 	<button type="button" class="close" onClick="deleteNote({{ note.id }})">
 			<span aria-hidden="true">&times;</span>
