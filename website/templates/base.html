@@ -17,7 +17,6 @@
 		<title>{% block title %}HOME{% endblock %}</title>
 
 		<style>
-
 			ul {
 				text-align:justify;
 			}
@@ -56,6 +55,11 @@
 				height: 320px;
 				resize: none;
 			}
+
+			/*Style for heading*/
+			.headings {
+				margin: 30px;
+			}
 		</style>
 
 	</head>
@@ -72,11 +76,13 @@
 				<!-- Note that to use the user object, i had to pass the object into the render_template function-->
 				{% block add_note_link %}<a class="nav-item nav-link" id="home" href="/">Add Note</a>{% endblock %}
 				{% block previous_note_link %}<a class="nav-item nav-link" id="previous-notes" href="/previous-notes">Previous Notes</a>{% endblock %}
+				<a class="nav-item nav-link" id="logout" href="/about-app">About App</a>
 				<a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
 				{% else %}
 							
 				<a class="nav-item nav-link" id="login" href="/login">Login</a>
 				<a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
+				<a class="nav-item nav-link" id="logout" href="/about-app">About App</a>
 				{% endif %}
 			</div>
 		</div>

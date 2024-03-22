@@ -28,12 +28,11 @@ def home():
 @views.route('/previous-notes')
 @login_required
 def previous_notes():
-    print(current_user.notes[0].date)
     return render_template("previous_notes.html", user=current_user)
 
 @views.route('/about-app')
 def about_us():
-    return render_template("about_app.html")
+    return render_template("about_app.html", user=current_user)
 
 # this would only take on the POST method. no GET request
 @views.route('/delete-note', methods=['POST'])
